@@ -1,5 +1,5 @@
 from tkinter import *
-# import tkinter as tk
+import tkinter as tk
 import tkinter.messagebox
 # import  mysql.connector
 from  tkinter import  ttk
@@ -13,22 +13,22 @@ root = Tk()
 
 root.title("โรงแรมผีสิง เข้าพักมีนางรำ Login")
 
-root.geometry("480x480")
+root.geometry("380x360")
 
 def chkLogin():
     var1 = txt.get()
     var2 = txt1.get()
-    if (var1 == 'admin') and (var2 == '123'):
+    if (var1 == '') and (var2 == ''):
         # print(var1)
-        openWindow()
+        booking()()
     else:
         tkinter.messagebox.showinfo(
-            'ระบบร้านสะดวกซื้อ', 'ไม่สามารถเข้าสู่ระบบได้')
+            'โรงแรมผีสิง เข้าพักมีนางรำ Login', 'ไม่สามารถเข้าสู่ระบบได้')
 
 
 def exitProgram():
     confirm = tkinter.messagebox.askquestion(
-        "ยืนยัน", "คุณต้องการปิดโปรแกรมหรือไม่")
+        "ยืนยัน", "Do you Want exit")
     if confirm == "yes":
         root.destroy()
 
@@ -51,6 +51,78 @@ T2 = Entry(frame1, show='*', textvariable=txt1, font=("4711_AtNoon_Regular", 16)
 btn1 = Button(frame1, text="Login", fg="black", font=("4711_AtNoon_Regular", 20), bg="lightgrey",
               width="10", height="1", command=chkLogin).pack()
 
+def booking():
+    mainBooking = Tk()
+    mainBooking.title("โรงแรมผีสิง เข้าพักมีนางรำ")
+    mainBooking.geometry("500x500")
+
+  # สร้าง menu
+    myMenu = Menu()
+    mainBooking.config(menu=myMenu)
+    # เพิ่มเมนู หลัก
+    myMenu.add_cascade(label="File")
+    myMenu.add_cascade(label="Edit")
+    myMenu.add_cascade(label="View")
+
+    Standard=IntVar()
+    Duluxe=IntVar()
+    Suite=IntVar()
+
+    var1 = IntVar()
+    var2 = IntVar()
+    var3 = IntVar()
+    var4 = IntVar()
+    var5 = IntVar()
+    var6 = IntVar() 
+    var7 = IntVar() 
+    var8 = IntVar()
+    var9 = IntVar()
+    var10 = IntVar()
+    var11 = IntVar()
+    var12 = IntVar()
+    
+    
+
+    lbcon_name = Label(mainBooking, text="Room Type :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=0, column=0, sticky='NSEW')
+    
+    
+    Checkbutton(mainBooking, text="1", variable=var1).grid(row=0, column=1, sticky= 'W' )
+    Checkbutton(mainBooking, text="2", variable=var2).grid(row=0, column=2, sticky= 'W' )   
+    Checkbutton(mainBooking, text="3", variable=var3).grid(row=0, column=3, sticky= 'W' )
+    Checkbutton(mainBooking, text="4", variable=var4).grid(row=0, column=4, sticky= 'W' ) 
+    Checkbutton(mainBooking, text="5", variable=var5).grid(row=1, column=1, sticky= 'W' )
+    Checkbutton(mainBooking, text="6", variable=var6).grid(row=1, column=2, sticky= 'W' ) 
+    Checkbutton(mainBooking, text="7", variable=var7).grid(row=1, column=3, sticky= 'W' )
+    Checkbutton(mainBooking, text="8", variable=var8).grid(row=1, column=4, sticky= 'W' ) 
+    Checkbutton(mainBooking, text="9", variable=var9).grid(row=2, column=1, sticky= 'W' )
+    Checkbutton(mainBooking, text="10", variable=var10).grid(row=2, column=2, sticky= 'W' )
+    Checkbutton(mainBooking, text="11", variable=var11).grid(row=2, column=3, sticky= 'W' )
+    Checkbutton(mainBooking, text="12", variable=var12).grid(row=2, column=4, sticky= 'W' )
+
+
+    Label(mainBooking, text="Standard",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=3, column=0, sticky='NSEW')
+    # gender radiobutton
+    Radiobutton(mainBooking,text="Standard",variable=Standard,value=1).place(x=200,y=87)
+    Radiobutton(mainBooking, text="Duluxe", variable=Standard, value=2).place(x=295, y=87)
+   
+    Label(mainBooking, text="Duluxe",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
+    # gender radiobutton
+    Radiobutton(mainBooking,text="Single Bed",variable=Duluxe,value=1).place(x=200,y=125)
+    Radiobutton(mainBooking, text="Twin", variable=Duluxe, value=2).place(x=295, y=125)
+
+    Label(mainBooking, text="Suite",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=9, column=0, sticky='NSEW')
+    # gender radiobutton
+    Radiobutton(mainBooking,text="Ocean View",variable=Suite,value=1).place(x=200,y=165)
+    Radiobutton(mainBooking, text="Mountain view", variable=Suite, value=2).place(x=295, y=165)
+
+   
+    
+
+
+    btnADD = Button(mainBooking, text="NEXT", fg="black", font=("4711_AtNoon_Regular", 12),
+                    bg="lightgrey", width="20", height="3", command=openWindow).grid(row=10, column=0, sticky='NSEW')
+    
+    mainloop()
 
 def openWindow():
     mainWindow = Tk()
@@ -161,34 +233,14 @@ def openWindow():
     txt12 = StringVar()
     txtmore = Entry(mainWindow, textvariable=txt12, font=("4711_AtNoon_Regular", 24)).grid(row=11, column=1, sticky='NSEW')
 # ปุ่มกด
-    btnADD = Button(mainWindow, text="Save", fg="black", font=("Verdana", 12),
+    btnADD = Button(mainWindow, text="Save", fg="black", font=("4711_AtNoon_Regular", 12),
                     bg="lightgrey", width="20", height="3", command=chkLogin).grid(row=12, column=0, sticky='NSEW')
-    btnDEL = Button(mainWindow, text="Add Room", fg="black", font=("Verdana", 12),
+    btnDEL = Button(mainWindow, text="Add Room", fg="black", font=("4711_AtNoon_Regular", 12),
                     bg="lightgrey", width="20", height="3", command=openWindow).grid(row=12, column=1, sticky='NSEW')
-    btnEDIT = Button(mainWindow, text="Edit", fg="black", font=("Verdana", 12),
+    btnEDIT = Button(mainWindow, text="Edit", fg="black", font=("4711_AtNoon_Regular", 12),
                      bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=2, sticky='NSEW')
-    btnCLOSE = Button(mainWindow, text="Close", fg="black", font=("Verdana", 12),
+    btnCLOSE = Button(mainWindow, text="Close", fg="black", font=("4711_AtNoon_Regular", 12),
                       bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=3, sticky='NSEW')
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 root.mainloop()

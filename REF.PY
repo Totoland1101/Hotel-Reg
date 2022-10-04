@@ -1,7 +1,7 @@
 from tkinter import *
 from  tkinter import  ttk
 #importing connection
-import  mysql.connector
+# import  mysql.connector
 #establishing connection
 # conn = mysql.connector.connect(
 #    user='root', password='', host='localhost', database='cs_project')

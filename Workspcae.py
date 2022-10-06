@@ -13,7 +13,7 @@ root = Tk()
 
 root.title("โรงแรมผีสิง เข้าพักมีนางรำ Login")
 
-root.geometry("380x360")
+root.geometry("480x480")
 
 def chkLogin():
     var1 = txt.get()
@@ -102,18 +102,18 @@ def booking():
 
     Label(mainBooking, text="Standard",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=3, column=0, sticky='NSEW')
     # gender radiobutton
-    Radiobutton(mainBooking,text="Standard",variable=Standard,value=1).place(x=200,y=87)
-    Radiobutton(mainBooking, text="Duluxe", variable=Standard, value=2).place(x=295, y=87)
+    Radiobutton(mainBooking,text="Standard",variable=Standard,value=1).place(x=125,y=110)
+    Radiobutton(mainBooking, text="Duluxe", variable=Standard, value=2).place(x=215, y=110)
    
     Label(mainBooking, text="Duluxe",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
     # gender radiobutton
-    Radiobutton(mainBooking,text="Single Bed",variable=Duluxe,value=1).place(x=200,y=125)
-    Radiobutton(mainBooking, text="Twin", variable=Duluxe, value=2).place(x=295, y=125)
+    Radiobutton(mainBooking,text="Single Bed",variable=Duluxe,value=1).place(x=125,y=155)
+    Radiobutton(mainBooking, text="Twin", variable=Duluxe, value=2).place(x=215, y=155)
 
     Label(mainBooking, text="Suite",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=9, column=0, sticky='NSEW')
     # gender radiobutton
-    Radiobutton(mainBooking,text="Ocean View",variable=Suite,value=1).place(x=200,y=165)
-    Radiobutton(mainBooking, text="Mountain view", variable=Suite, value=2).place(x=295, y=165)
+    Radiobutton(mainBooking,text="Ocean View",variable=Suite,value=1).place(x=125,y=202)
+    Radiobutton(mainBooking, text="Mountain view", variable=Suite, value=2).place(x=215, y=202)
 
    
     
@@ -167,15 +167,15 @@ def openWindow():
 
     Label(mainWindow, text="ประเภทห้อง : ",  fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=3, column=0, sticky='NSEW')
     # gender radiobutton
-    Radiobutton(mainWindow,text="Standard",variable=typeroom,value=1).place(x=250,y=149)
-    Radiobutton(mainWindow, text="Duluxe", variable=typeroom, value=2).place(x=350, y=149)
-    Radiobutton(mainWindow, text="Suite", variable=typeroom, value=3).place(x=450, y=149)
+    Radiobutton(mainWindow,text="Standard",variable=typeroom,value=1).place(x=193,y=193)
+    Radiobutton(mainWindow, text="Duluxe", variable=typeroom, value=2).place(x=283, y=193)
+    Radiobutton(mainWindow, text="Suite", variable=typeroom, value=3).place(x=363, y=193)
 
     Label(mainWindow, text="ชนิดห้องพัก" , fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey" ).grid(row=3, column=2, sticky='NSEW')
     dropdown = ttk.Combobox(mainWindow, width=15, font=("4711_AtNoon_Regular", 15) )
     dropdown['values'] = (' Single Bed',' Twin',' Ocean view',' Mountain View')
     dropdown.current()
-    dropdown.place(x=750,y=147)
+    dropdown.place(x=605,y=190)
 
     lbchack_room= Label(mainWindow, text="จำนวนห้อง:", fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey").grid(row=4, column=0, sticky='NSEW')  
     # -------------------------
@@ -216,30 +216,30 @@ def openWindow():
     dropdown1 = ttk.Combobox(mainWindow, width=15, font=("4711_AtNoon_Regular", 15) )
     dropdown1['values'] = (' 1500',' 3000',' 4500',' 7500')
     dropdown1.current()
-    dropdown1.place(x=245,y=343)
+    dropdown1.place(x=245,y=426)
 
     Label(mainWindow, text="การชำระเงิน : ",  fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=9, column=0, sticky='NSEW')
     # gender radiobutton
-    Radiobutton(mainWindow,text="ชำระแล้ว",variable=priceroom,value=1).place(x=245,y=380)
-    Radiobutton(mainWindow, text="ยังไม่ชำระ", variable=priceroom, value=2).place(x=350, y=380)
+    Radiobutton(mainWindow,text="ชำระแล้ว",variable=priceroom,value=1).place(x=185,y=475)
+    Radiobutton(mainWindow, text="ยังไม่ชำระ", variable=priceroom, value=2).place(x=283, y=475)
 
     Label(mainWindow, text="เงินมัดจำ : ",  fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=10, column=0, sticky='NSEW')
     # gender radiobutton
-    Radiobutton(mainWindow,text="ชำระแล้ว",variable=priceroom1,value=1).place(x=247,y=413)
-    Radiobutton(mainWindow, text="ยังไม่ชำระ", variable=priceroom1, value=2).place(x=350, y=413)
+    Radiobutton(mainWindow,text="ชำระแล้ว",variable=priceroom1,value=1).place(x=185,y=522)
+    Radiobutton(mainWindow, text="ยังไม่ชำระ", variable=priceroom1, value=2).place(x=283, y=522)
 
     lbmore= Label(mainWindow, text="หมายเหตุ:", fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey").grid(row=11, column=0, sticky='NSEW')
 # -------------------------
     txt12 = StringVar()
     txtmore = Entry(mainWindow, textvariable=txt12, font=("4711_AtNoon_Regular", 24)).grid(row=11, column=1, sticky='NSEW')
 # ปุ่มกด
-    btnADD = Button(mainWindow, text="Save", fg="black", font=("4711_AtNoon_Regular", 12),
+    btnADD = Button(mainWindow, text="Save", fg="black", font=("4711_AtNoon_Regular", 18),
                     bg="lightgrey", width="20", height="3", command=chkLogin).grid(row=12, column=0, sticky='NSEW')
-    btnDEL = Button(mainWindow, text="Add Room", fg="black", font=("4711_AtNoon_Regular", 12),
+    btnDEL = Button(mainWindow, text="Add Room", fg="black", font=("4711_AtNoon_Regular", 18),
                     bg="lightgrey", width="20", height="3", command=openWindow).grid(row=12, column=1, sticky='NSEW')
-    btnEDIT = Button(mainWindow, text="Edit", fg="black", font=("4711_AtNoon_Regular", 12),
+    btnEDIT = Button(mainWindow, text="Edit", fg="black", font=("4711_AtNoon_Regular", 18),
                      bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=2, sticky='NSEW')
-    btnCLOSE = Button(mainWindow, text="Close", fg="black", font=("4711_AtNoon_Regular", 12),
+    btnCLOSE = Button(mainWindow, text="Close", fg="black", font=("4711_AtNoon_Regular", 18),
                       bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=3, sticky='NSEW')
     
 

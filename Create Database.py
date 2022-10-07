@@ -6,4 +6,4 @@ mydb = mysql.connector.connect(
    
 )
 mycursor = mydb.cursor()
-mycursor.execute("CREATE DATABASE cs_project")
+mycursor.execute("CREATE DATABASE Test01")

@@ -137,12 +137,48 @@ def openWindow():
     myMenu.add_cascade(label="Edit")
     myMenu.add_cascade(label="View")
 
+
+    txtlbcon_name = txt01.get()
+    txtnum = txt2.get()
+    txtNAT = txt3.get()
+    txtadd = txt4.get()
+    txtcheck_room = txt5.get()
+    txtcheck_in = txt6.get()
+    txtcheck_out = txt7.get()
+    txtcheck_type = txt8.get()
+    txtcheck_ch = txt9.get()
+    txtcheck_room_num = txt10.get()
+    txtcheck_re = txt11.get()
+    txtmore = txt12.get()
+
+
+
+    global typeroom
+    global typeroom1
+
+    global txt01
+    global txt2
+    global txt3
+    global txt4
+    global txt5
+    global txt6
+    global txt7
+    global txt8
+    global txt9
+    global txt10
+    global txt11
+    global txt12
+
+    typeroom=IntVar()
+    priceroom=IntVar()
+    priceroom1=IntVar()
+
     lbTitle = Label(mainWindow, text="บันทึกรายการ", fg="black",height=2, width=15, font=("4711_AtNoon_Regular", 24),bg="lightBlue").grid(row=0, column=0, sticky='NSEW', columnspan=1)
 
     lbcon_name = Label(mainWindow, text="ชื่อลูกค้า :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=1, column=0, sticky='NSEW')
     # ----------------
-    txt1 = StringVar()
-    txtlbcon_name = Entry(mainWindow, textvariable=txt1,font=("4711_AtNoon_Regular", 24)).grid(row=1, column=1, sticky='NSEW')
+    txt01 = StringVar()
+    txtlbcon_name = Entry(mainWindow, textvariable=txt01,font=("4711_AtNoon_Regular", 24)).grid(row=1, column=1, sticky='NSEW')
 
     lbnum = Label(mainWindow, text="เบอร์โทรศัพท์ :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=1, column=2, sticky='NSEW')
     # -----------------
@@ -158,11 +194,6 @@ def openWindow():
     # -------------------------
     txt4 = StringVar()
     txtadd = Entry(mainWindow, textvariable=txt4, font=("4711_AtNoon_Regular", 24)).grid(row=2, column=3, sticky='NSEW')
-
-
-    typeroom=IntVar()
-    priceroom=IntVar()
-    priceroom1=IntVar()
 
 
     Label(mainWindow, text="ประเภทห้อง : ",  fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=3, column=0, sticky='NSEW')

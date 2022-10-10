@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
-import  mysql.connector
+#import  mysql.connector
 #establishing connection
 # conn = mysql.connector.connect(
 #    user='root', password='', host='localhost', database='cs_project')
@@ -10,7 +10,7 @@ root = Tk()
 
 root.title("โรงแรมผีสิง เข้าพักมีนางรำ Login")
 
-root.geometry("480x480")
+root.geometry("680x480")
 
 frame1 = Frame(root, highlightbackground="blue", highlightthickness=2)
 frame1.pack(padx=20, pady=20)

@@ -3,7 +3,7 @@ mydb = mysql.connector.connect(
       host = "localhost",
     user="root",
     password="1234567890",
-    database="Test01"
+    database="test_01"
 )
 mycursor = mydb.cursor()
 mycursor.execute("CREATE TABLE REG ( RID int AUTO_INCREMENT,NAME varchar(255) ,EMAIL varchar(255),GENDER varchar(255),CITY varchar(255),STATE varchar(255),PRIMARY KEY (RID)")
@@ -19,3 +19,6 @@ mycursor.execute("CREATE TABLE REG ( RID int AUTO_INCREMENT,NAME varchar(255) ,E
 #     STATE varchar(255),
 #     PRIMARY KEY (RID)
 # );
+
+#อันนี้เป็น ref ของการ CREATE TABLE ถ้าไม่ถนัดใช้ code ไปสร้างในหน้า php ได้ค่า 
+# พวกรายละเอียด table อยู่ใน workspace 140 

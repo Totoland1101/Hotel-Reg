@@ -1,12 +1,12 @@
 from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
-# import  mysql.connector
-from  tkinter import  ttk
+import mysql.connector
+from tkinter import  ttk
 
 #establishing connection
-# conn = mysql.connector.connect(
-#    user='root', password='', host='localhost', database='cs_project')
+conn = mysql.connector.connect(
+user='root', password='1234567890', host='localhost', database='test_01')
 
 
 root = Tk()

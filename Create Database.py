@@ -1,9 +1,10 @@
 import mysql.connector
 mydb = mysql.connector.connect(
-      host = "localhost",
-    user="root",
-    password="1234567890",
-   
+  host = "localhost",
+  user="root",
+  password="1234567890",
 )
 mycursor = mydb.cursor()
-mycursor.execute("CREATE DATABASE Test01")
+mycursor.execute("CREATE DATABASE test_01")
+
+

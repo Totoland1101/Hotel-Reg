@@ -6,7 +6,7 @@ from tkinter import  ttk
 
 #establishing connection
 conn = mysql.connector.connect(
-user='root', password='1234567890', host='localhost', database='test_01')
+user='root', password='1234567890', host='localhost', database='test02')
 
 
 root = Tk()
@@ -16,7 +16,7 @@ root.title("โรงแรมผีสิง เข้าพักมีนา�
 root.geometry("480x480")
 
 def chkLogin():
-    var1 = txt.get()
+    var1 = TxT.get()
     var2 = txt1.get()
     if (var1 == '') and (var2 == ''):
         # print(var1)
@@ -39,8 +39,8 @@ myLabel1 = Label(frame1 , text="โรงแรมผีสิง เข้า�
 
 myLabel2 = Label(frame1, text=" Username :", fg="black", font=("4711_AtNoon_Regular", 28),).pack()
 
-txt = StringVar()
-T1 = Entry(frame1, textvariable=txt, font=("4711_AtNoon_Regular", 16)).pack()
+TxT = StringVar()
+T1 = Entry(frame1, textvariable=TxT, font=("4711_AtNoon_Regular", 16)).pack()
 # การ Label สำหรับ Password
 lbUN = Label(frame1, text="Password :", fg="black",
              font=("4711_AtNoon_Regular", 28), ).pack()
@@ -50,6 +50,66 @@ T2 = Entry(frame1, show='*', textvariable=txt1, font=("4711_AtNoon_Regular", 16)
 
 btn1 = Button(frame1, text="Login", fg="black", font=("4711_AtNoon_Regular", 20), bg="lightgrey",
               width="10", height="1", command=chkLogin).pack()
+
+def register():
+    #getting form data
+    name=txt.get()
+    phnum=txt2.get()
+    nationality=txt3.get()
+    Address=txt4.get()
+    typeroom1=typeroom.get()
+    Typeroom1=Typeroom.get()
+    checkroom=txt5.get()
+    checkin=txt6.get()
+    checkout=txt7.get()
+    checktype=txt8.get()
+    checktypech=txt9.get()
+    roomnum=txt10.get()
+    reservation=txt11.get()
+    price0=price.get()
+    price1=priceroom.get()
+    price2=priceroom1.get()
+    More=txt12.get()
+
+    #applying empty validation
+    if name=='' or phnum==''or nationality=='' or Address==''or typeroom1==''or Typeroom1=='' or checkroom=='' or checkin==''or checkout=='' or checktype==''or checktypech==''or roomnum==''or reservation==''or price0==''or price1==''or price2==''or More=='' :
+        message.set("fill the empty field!!!")
+    else:
+       # Creating a cursor object using the cursor() method
+       cursor = conn.cursor()
+       # Preparing SQL query to INSERT a record into the database.
+       insert_stmt = (
+           "INSERT INTO REG(Name, Phone, Nationality, Address, TyRoom, Tyroom1 , Uint , CheckIn , CheckOut , Adult ,Children , RoomNum ,ReservationNum ,PriceST , PriceST1 ,PriceST2 ,ADDON )"
+           "VALUES (%s, %s,%s,%s,%s, %s,%s, %s, %s, %s, %s, %s , %s, %s, %s, %s, %s ,%s )"
+       )
+       if typeroom1==1:
+        data = (name, phnum, nationality, Address, "Standard", Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,price2 ,More)
+       
+       else:
+        data = (name, phnum, nationality, Address, "Duluxe", Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,price2 ,More)
+       
+       if price1==1:
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , "ยังไม่ขำระ" ,price2 ,More)
+  
+       else:
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , "ชำระแล้ว"  ,price2 ,More)    
+        
+
+       if price2==1:
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,"ยังไม่ขำระ"  ,More)
+       
+       else:
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 , "ชำระแล้ว"  ,More)   
+        
+       try:
+           #executing the sql command
+           cursor.execute(insert_stmt,data)
+           #commit changes in database
+           conn.commit()
+       except:
+           conn.rollback()
+       message.set("Stored successfully")
+
 
 def booking():
     mainBooking = Tk()
@@ -105,7 +165,7 @@ def booking():
     Radiobutton(mainBooking,text="Standard",variable=Standard,value=1).place(x=125,y=110)
     Radiobutton(mainBooking, text="Duluxe", variable=Standard, value=2).place(x=215, y=110)
    
-    Label(mainBooking, text="Duluxe",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
+    Label(mainBooking, text="Duluxe",font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
     # gender radiobutton
     Radiobutton(mainBooking,text="Single Bed",variable=Duluxe,value=1).place(x=125,y=155)
     Radiobutton(mainBooking, text="Twin", variable=Duluxe, value=2).place(x=215, y=155)
@@ -138,25 +198,7 @@ def openWindow():
     myMenu.add_cascade(label="View")
 
 
-    txtlbcon_name = txt01.get()
-    txtnum = txt2.get()
-    txtNAT = txt3.get()
-    txtadd = txt4.get()
-    txtcheck_room = txt5.get()
-    txtcheck_in = txt6.get()
-    txtcheck_out = txt7.get()
-    txtcheck_type = txt8.get()
-    txtcheck_ch = txt9.get()
-    txtcheck_room_num = txt10.get()
-    txtcheck_re = txt11.get()
-    txtmore = txt12.get()
-
-
-
-    global typeroom
-    global typeroom1
-
-    global txt01
+    global txt
     global txt2
     global txt3
     global txt4
@@ -168,17 +210,31 @@ def openWindow():
     global txt10
     global txt11
     global txt12
+    global  message;
+    
+    global typeroom
+    global Typeroom
+    global price
+    global priceroom
+    global priceroom1  
+
 
     typeroom=IntVar()
+    Typeroom=StringVar()
+    price= StringVar()
     priceroom=IntVar()
     priceroom1=IntVar()
+    message=StringVar()
+    
+  
+
 
     lbTitle = Label(mainWindow, text="บันทึกรายการ", fg="black",height=2, width=15, font=("4711_AtNoon_Regular", 24),bg="lightBlue").grid(row=0, column=0, sticky='NSEW', columnspan=1)
 
     lbcon_name = Label(mainWindow, text="ชื่อลูกค้า :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=1, column=0, sticky='NSEW')
     # ----------------
-    txt01 = StringVar()
-    txtlbcon_name = Entry(mainWindow, textvariable=txt01,font=("4711_AtNoon_Regular", 24)).grid(row=1, column=1, sticky='NSEW')
+    txt = StringVar()
+    txtlbcon_name = Entry(mainWindow, textvariable=txt,font=("4711_AtNoon_Regular", 24)).grid(row=1, column=1, sticky='NSEW')
 
     lbnum = Label(mainWindow, text="เบอร์โทรศัพท์ :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=1, column=2, sticky='NSEW')
     # -----------------
@@ -203,7 +259,7 @@ def openWindow():
     Radiobutton(mainWindow, text="Suite", variable=typeroom, value=3).place(x=363, y=193)
 
     Label(mainWindow, text="ชนิดห้องพัก" , fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey" ).grid(row=3, column=2, sticky='NSEW')
-    dropdown = ttk.Combobox(mainWindow, width=15, font=("4711_AtNoon_Regular", 15) )
+    dropdown = ttk.Combobox(mainWindow, width=15, font=("4711_AtNoon_Regular", 15) ,textvariable=Typeroom )
     dropdown['values'] = (' Single Bed',' Twin',' Ocean view',' Mountain View')
     dropdown.current()
     dropdown.place(x=605,y=190)
@@ -223,7 +279,7 @@ def openWindow():
     txt7 = StringVar()
     txtcheck_out = Entry(mainWindow, textvariable=txt7, font=("4711_AtNoon_Regular", 24)).grid(row=5, column=1, sticky='NSEW')
 
-    lbchack_type= Label(mainWindow, text="จำนวนผู้เข้าพัก ผู้ใหญ่:", fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
+    lbcheck_type= Label(mainWindow, text="จำนวนผู้เข้าพัก ผู้ใหญ่:", fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
     # -------------------------
     txt8 = StringVar()
     txtcheck_type = Entry(mainWindow, textvariable=txt8, font=("4711_AtNoon_Regular", 24)).grid(row=6, column=1, sticky='NSEW')
@@ -244,7 +300,7 @@ def openWindow():
     txtcheck_re = Entry(mainWindow, textvariable=txt11, font=("4711_AtNoon_Regular", 24)).grid(row=7, column=3, sticky='NSEW')
 
     Label(mainWindow, text="ราคาห้องพัก" , fg="black", font=("4711_AtNoon_Regular", 24),bg="lightgrey" ).grid(row=8, column=0, sticky='NSEW')
-    dropdown1 = ttk.Combobox(mainWindow, width=15, font=("4711_AtNoon_Regular", 15) )
+    dropdown1 = ttk.Combobox(mainWindow, width=15, font=("4711_AtNoon_Regular", 15) ,textvariable=price )
     dropdown1['values'] = (' 1500',' 3000',' 4500',' 7500')
     dropdown1.current()
     dropdown1.place(x=245,y=426)
@@ -265,7 +321,7 @@ def openWindow():
     txtmore = Entry(mainWindow, textvariable=txt12, font=("4711_AtNoon_Regular", 24)).grid(row=11, column=1, sticky='NSEW')
 # ปุ่มกด
     btnADD = Button(mainWindow, text="Save", fg="black", font=("4711_AtNoon_Regular", 18),
-                    bg="lightgrey", width="20", height="3", command=chkLogin).grid(row=12, column=0, sticky='NSEW')
+                    bg="lightgrey", width="20", height="3", command=register).grid(row=12, column=0, sticky='NSEW')
     btnDEL = Button(mainWindow, text="Add Room", fg="black", font=("4711_AtNoon_Regular", 18),
                     bg="lightgrey", width="20", height="3", command=openWindow).grid(row=12, column=1, sticky='NSEW')
     btnEDIT = Button(mainWindow, text="Edit", fg="black", font=("4711_AtNoon_Regular", 18),

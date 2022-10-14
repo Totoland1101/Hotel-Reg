@@ -4,7 +4,7 @@ from  tkinter import  ttk
 import  mysql.connector
 #establishing connection
 conn = mysql.connector.connect(
-   user='root', password='1234567890', host='localhost', database='test03')
+   user='root', password='1234567890', host='localhost', database='test01')
 """
 here in my case there is no password so password='' is blank
 root is username

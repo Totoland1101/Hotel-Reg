@@ -15,42 +15,6 @@ root.title("โรงแรมผีสิง เข้าพักมีนา�
 
 root.geometry("480x480")
 
-def chkLogin():
-    var1 = TxT.get()
-    var2 = txt1.get()
-    if (var1 == '') and (var2 == ''):
-        # print(var1)
-        booking()()
-    else:
-        tkinter.messagebox.showinfo(
-            'โรงแรมผีสิง เข้าพักมีนางรำ Login', 'ไม่สามารถเข้าสู่ระบบได้')
-
-
-def exitProgram():
-    confirm = tkinter.messagebox.askquestion(
-        "ยืนยัน", "Do you Want exit")
-    if confirm == "yes":
-        root.destroy()
-
-frame1 = Frame(root, highlightbackground="blue", highlightthickness=2)
-frame1.pack(padx=20, pady=20)
-
-myLabel1 = Label(frame1 , text="โรงแรมผีสิง เข้าพักมีนางรำ", fg="black",height=3, width=52, font=("4711_AtNoon_Regular", 28)).pack()
-
-myLabel2 = Label(frame1, text=" Username :", fg="black", font=("4711_AtNoon_Regular", 28),).pack()
-
-TxT = StringVar()
-T1 = Entry(frame1, textvariable=TxT, font=("4711_AtNoon_Regular", 16)).pack()
-# การ Label สำหรับ Password
-lbUN = Label(frame1, text="Password :", fg="black",
-             font=("4711_AtNoon_Regular", 28), ).pack()
-
-txt1 = StringVar()
-T2 = Entry(frame1, show='*', textvariable=txt1, font=("4711_AtNoon_Regular", 16)).pack()
-
-btn1 = Button(frame1, text="Login", fg="black", font=("4711_AtNoon_Regular", 20), bg="lightgrey",
-              width="10", height="1", command=chkLogin).pack()
-
 def register():
     #getting form data
     name=txt.get()
@@ -110,6 +74,44 @@ def register():
            conn.rollback()
        message.set("Stored successfully")
 
+def chkLogin():
+    var1 = TxT.get()
+    var2 = txt1.get()
+    if (var1 == '') and (var2 == ''):
+        # print(var1)
+        booking()
+    else:
+        tkinter.messagebox.showinfo(
+            'โรงแรมผีสิง เข้าพักมีนางรำ Login', 'ไม่สามารถเข้าสู่ระบบได้')
+
+
+def exitProgram():
+    confirm = tkinter.messagebox.askquestion(
+        "ยืนยัน", "Do you Want exit")
+    if confirm == "yes":
+        root.destroy()
+
+frame1 = Frame(root, highlightbackground="blue", highlightthickness=2)
+frame1.pack(padx=20, pady=20)
+
+myLabel1 = Label(frame1 , text="โรงแรมผีสิง เข้าพักมีนางรำ", fg="black",height=3, width=52, font=("4711_AtNoon_Regular", 28)).pack()
+
+myLabel2 = Label(frame1, text=" Username :", fg="black", font=("4711_AtNoon_Regular", 28),).pack()
+
+TxT = StringVar()
+T1 = Entry(frame1, textvariable=TxT, font=("4711_AtNoon_Regular", 16)).pack()
+# การ Label สำหรับ Password
+lbUN = Label(frame1, text="Password :", fg="black",
+             font=("4711_AtNoon_Regular", 28), ).pack()
+
+txt1 = StringVar()
+T2 = Entry(frame1, show='*', textvariable=txt1, font=("4711_AtNoon_Regular", 16)).pack()
+
+btn1 = Button(frame1, text="Login", fg="black", font=("4711_AtNoon_Regular", 20), bg="lightgrey",
+              width="10", height="1", command=chkLogin).pack()
+
+
+
 
 def booking():
     mainBooking = Tk()
@@ -118,11 +120,11 @@ def booking():
 
   # สร้าง menu
     myMenu = Menu()
-    mainBooking.config(menu=myMenu)
+    # mainBooking.config(menu=myMenu)
     # เพิ่มเมนู หลัก
-    myMenu.add_cascade(label="File")
-    myMenu.add_cascade(label="Edit")
-    myMenu.add_cascade(label="View")
+    # myMenu.add_cascade(label="File")
+    # myMenu.add_cascade(label="Edit")
+    # myMenu.add_cascade(label="View")
 
     Standard=IntVar()
     Duluxe=IntVar()
@@ -210,15 +212,12 @@ def openWindow():
     global txt10
     global txt11
     global txt12
-    global  message;
-    
+    global message
     global typeroom
     global Typeroom
     global price
     global priceroom
     global priceroom1  
-
-
     typeroom=IntVar()
     Typeroom=StringVar()
     price= StringVar()
@@ -226,9 +225,6 @@ def openWindow():
     priceroom1=IntVar()
     message=StringVar()
     
-  
-
-
     lbTitle = Label(mainWindow, text="บันทึกรายการ", fg="black",height=2, width=15, font=("4711_AtNoon_Regular", 24),bg="lightBlue").grid(row=0, column=0, sticky='NSEW', columnspan=1)
 
     lbcon_name = Label(mainWindow, text="ชื่อลูกค้า :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=1, column=0, sticky='NSEW')
@@ -305,6 +301,8 @@ def openWindow():
     dropdown1.current()
     dropdown1.place(x=245,y=426)
 
+    Label(mainWindow, text="",textvariable=message).place(x=245,y=726)
+
     Label(mainWindow, text="การชำระเงิน : ",  fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=9, column=0, sticky='NSEW')
     # gender radiobutton
     Radiobutton(mainWindow,text="ชำระแล้ว",variable=priceroom,value=1).place(x=185,y=475)
@@ -328,6 +326,7 @@ def openWindow():
                      bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=2, sticky='NSEW')
     btnCLOSE = Button(mainWindow, text="Close", fg="black", font=("4711_AtNoon_Regular", 18),
                       bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=3, sticky='NSEW')
+    
     
 
 root.mainloop()

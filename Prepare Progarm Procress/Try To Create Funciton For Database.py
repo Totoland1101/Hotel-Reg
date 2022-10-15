@@ -1,20 +1,18 @@
 from tkinter import *
-import tkinter as tk
-import tkinter.messagebox
-import mysql.connector
-from tkinter import  ttk
-
+from  tkinter import  ttk
+# importing connection
+import  mysql.connector
 #establishing connection
 conn = mysql.connector.connect(
-user='root', password='1234567890', host='localhost', database='test02')
-
-
-root = Tk()
-
-root.title("โรงแรมผีสิง เข้าพักมีนางรำ Login")
-
-root.geometry("480x480")
-
+   user='root', password='1234567890', host='localhost', database='test03')
+"""
+here in my case there is no password so password='' is blank
+root is username
+localhost is server or host name 
+you can also use 127.0.0.1 in place of local host
+pythondata is the name of Database
+"""
+#defining register function
 def register():
     #getting form data
     name=txt.get()
@@ -44,26 +42,26 @@ def register():
        # Preparing SQL query to INSERT a record into the database.
        insert_stmt = (
            "INSERT INTO REG(Name, Phone, Nationality, Address, TyRoom, Tyroom1 , Uint , CheckIn , CheckOut , Adult ,Children , RoomNum ,ReservationNum ,PriceST , PriceST1 ,PriceST2 ,ADDON )"
-           "VALUES (%s, %s,%s,%s,%s, %s,%s, %s, %s, %s, %s, %s , %s, %s, %s, %s, %s ,%s )"
+           "VALUES (%s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s  )"
        )
        if typeroom1==1:
-        data = (name, phnum, nationality, Address, "Standard", Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,price2 ,More)
+        data = (name, phnum, nationality, Address, "Standard", Typeroom1 , checkroom , checkin , checkout ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,price2 ,More)
        
        else:
-        data = (name, phnum, nationality, Address, "Duluxe", Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,price2 ,More)
+        data = (name, phnum, nationality, Address, "Duluxe", Typeroom1 , checkroom , checkin , checkout , checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,price2 ,More)
        
        if price1==1:
-        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , "ยังไม่ขำระ" ,price2 ,More)
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , checktype ,checktypech , roomnum ,reservation ,price0 , "ชำระแล้ว" ,price2 ,More)
   
        else:
-        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , "ชำระแล้ว"  ,price2 ,More)    
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , checktype ,checktypech , roomnum ,reservation ,price0 , "ยังไม่ขำระ"  ,price2 ,More)    
         
 
        if price2==1:
-        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,"ยังไม่ขำระ"  ,More)
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , checktype ,checktypech , roomnum ,reservation ,price0 , price1 ,"ชำระแล้ว"  ,More)
        
        else:
-        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , Adult ,checktype ,checktypech , roomnum ,reservation ,price0 , price1 , "ชำระแล้ว"  ,More)   
+        data = (name, phnum, nationality, Address, typeroom1, Typeroom1 , checkroom , checkin , checkout , checktype ,checktypech , roomnum ,reservation ,price0 , price1 , "ยังไม่ขำระ"  ,More)   
         
        try:
            #executing the sql command
@@ -74,130 +72,19 @@ def register():
            conn.rollback()
        message.set("Stored successfully")
 
-def chkLogin():
-    var1 = TxT.get()
-    var2 = txt1.get()
-    if (var1 == '') and (var2 == ''):
-        # print(var1)
-        booking()
-    else:
-        tkinter.messagebox.showinfo(
-            'โรงแรมผีสิง เข้าพักมีนางรำ Login', 'ไม่สามารถเข้าสู่ระบบได้')
-
-
-def exitProgram():
-    confirm = tkinter.messagebox.askquestion(
-        "ยืนยัน", "Do you Want exit")
-    if confirm == "yes":
-        root.destroy()
-
-frame1 = Frame(root, highlightbackground="blue", highlightthickness=2)
-frame1.pack(padx=20, pady=20)
-
-myLabel1 = Label(frame1 , text="โรงแรมผีสิง เข้าพักมีนางรำ", fg="black",height=3, width=52, font=("4711_AtNoon_Regular", 28)).pack()
-
-myLabel2 = Label(frame1, text=" Username :", fg="black", font=("4711_AtNoon_Regular", 28),).pack()
-
-TxT = StringVar()
-T1 = Entry(frame1, textvariable=TxT, font=("4711_AtNoon_Regular", 16)).pack()
-# การ Label สำหรับ Password
-lbUN = Label(frame1, text="Password :", fg="black",
-             font=("4711_AtNoon_Regular", 28), ).pack()
-
-txt1 = StringVar()
-T2 = Entry(frame1, show='*', textvariable=txt1, font=("4711_AtNoon_Regular", 16)).pack()
-
-btn1 = Button(frame1, text="Login", fg="black", font=("4711_AtNoon_Regular", 20), bg="lightgrey",
-              width="10", height="1", command=chkLogin).pack()
-
-
-
-
-def booking():
-    mainBooking = Tk()
-    mainBooking.title("โรงแรมผีสิง เข้าพักมีนางรำ")
-    mainBooking.geometry("500x500")
-
-  # สร้าง menu
-    myMenu = Menu()
-    # mainBooking.config(menu=myMenu)
-    # เพิ่มเมนู หลัก
-    # myMenu.add_cascade(label="File")
-    # myMenu.add_cascade(label="Edit")
-    # myMenu.add_cascade(label="View")
-
-    Standard=IntVar()
-    Duluxe=IntVar()
-    Suite=IntVar()
-
-    var1 = IntVar()
-    var2 = IntVar()
-    var3 = IntVar()
-    var4 = IntVar()
-    var5 = IntVar()
-    var6 = IntVar() 
-    var7 = IntVar() 
-    var8 = IntVar()
-    var9 = IntVar()
-    var10 = IntVar()
-    var11 = IntVar()
-    var12 = IntVar()
-    
-    
-
-    lbcon_name = Label(mainBooking, text="Room Type :", fg="black", font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=0, column=0, sticky='NSEW')
-    
-    
-    Checkbutton(mainBooking, text="1", variable=var1).grid(row=0, column=1, sticky= 'W' )
-    Checkbutton(mainBooking, text="2", variable=var2).grid(row=0, column=2, sticky= 'W' )   
-    Checkbutton(mainBooking, text="3", variable=var3).grid(row=0, column=3, sticky= 'W' )
-    Checkbutton(mainBooking, text="4", variable=var4).grid(row=0, column=4, sticky= 'W' ) 
-    Checkbutton(mainBooking, text="5", variable=var5).grid(row=1, column=1, sticky= 'W' )
-    Checkbutton(mainBooking, text="6", variable=var6).grid(row=1, column=2, sticky= 'W' ) 
-    Checkbutton(mainBooking, text="7", variable=var7).grid(row=1, column=3, sticky= 'W' )
-    Checkbutton(mainBooking, text="8", variable=var8).grid(row=1, column=4, sticky= 'W' ) 
-    Checkbutton(mainBooking, text="9", variable=var9).grid(row=2, column=1, sticky= 'W' )
-    Checkbutton(mainBooking, text="10", variable=var10).grid(row=2, column=2, sticky= 'W' )
-    Checkbutton(mainBooking, text="11", variable=var11).grid(row=2, column=3, sticky= 'W' )
-    Checkbutton(mainBooking, text="12", variable=var12).grid(row=2, column=4, sticky= 'W' )
-
-
-    Label(mainBooking, text="Standard",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=3, column=0, sticky='NSEW')
-    # gender radiobutton
-    Radiobutton(mainBooking,text="Standard",variable=Standard,value=1).place(x=125,y=110)
-    Radiobutton(mainBooking, text="Duluxe", variable=Standard, value=2).place(x=215, y=110)
-   
-    Label(mainBooking, text="Duluxe",font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=6, column=0, sticky='NSEW')
-    # gender radiobutton
-    Radiobutton(mainBooking,text="Single Bed",variable=Duluxe,value=1).place(x=125,y=155)
-    Radiobutton(mainBooking, text="Twin", variable=Duluxe, value=2).place(x=215, y=155)
-
-    Label(mainBooking, text="Suite",   font=("4711_AtNoon_Regular", 24), bg="lightgrey").grid(row=9, column=0, sticky='NSEW')
-    # gender radiobutton
-    Radiobutton(mainBooking,text="Ocean View",variable=Suite,value=1).place(x=125,y=202)
-    Radiobutton(mainBooking, text="Mountain view", variable=Suite, value=2).place(x=215, y=202)
-
-   
-    
-
-
-    btnADD = Button(mainBooking, text="NEXT", fg="black", font=("4711_AtNoon_Regular", 12),
-                    bg="lightgrey", width="20", height="3", command=openWindow).grid(row=10, column=0, sticky='NSEW')
-    
-    mainloop()
-
+#defining Registrationform function
 def openWindow():
     mainWindow = Tk()
     mainWindow.title("โรงแรมผีสิง เข้าพักมีนางรำ")
     mainWindow.geometry("1080x800")
 
-    # สร้าง menu
-    myMenu = Menu()
-    mainWindow.config(menu=myMenu)
-    # เพิ่มเมนู หลัก
-    myMenu.add_cascade(label="File")
-    myMenu.add_cascade(label="Edit")
-    myMenu.add_cascade(label="View")
+    # # สร้าง menu
+    # myMenu = Menu()
+    # mainWindow.config(menu=myMenu)
+    # # เพิ่มเมนู หลัก
+    # myMenu.add_cascade(label="File")
+    # myMenu.add_cascade(label="Edit")
+    # myMenu.add_cascade(label="View")
 
 
     global txt
@@ -320,13 +207,6 @@ def openWindow():
 # ปุ่มกด
     btnADD = Button(mainWindow, text="Save", fg="black", font=("4711_AtNoon_Regular", 18),
                     bg="lightgrey", width="20", height="3", command=register).grid(row=12, column=0, sticky='NSEW')
-    btnDEL = Button(mainWindow, text="Add Room", fg="black", font=("4711_AtNoon_Regular", 18),
-                    bg="lightgrey", width="20", height="3", command=openWindow).grid(row=12, column=1, sticky='NSEW')
-    btnEDIT = Button(mainWindow, text="Edit", fg="black", font=("4711_AtNoon_Regular", 18),
-                     bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=2, sticky='NSEW')
-    btnCLOSE = Button(mainWindow, text="Close", fg="black", font=("4711_AtNoon_Regular", 18),
-                      bg="lightgrey", width="20", height="3", command=exitProgram).grid(row=12, column=3, sticky='NSEW')
-    
-    
+    mainWindow.mainloop()
 
-root.mainloop()
+openWindow()

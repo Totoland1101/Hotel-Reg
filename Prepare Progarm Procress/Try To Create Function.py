@@ -103,7 +103,7 @@ def Login():
     btn1 = Button(frame1, text="Login", fg="black", font=("4711_AtNoon_Regular", 20), bg="lightgrey",
               width="10", height="1",).pack()
     root.mainloop()
-Login()
+
 
 def mainbooking():
     global mainBooking
@@ -177,7 +177,7 @@ def mainbooking():
                     bg="lightgrey", width="20", height="3", ).grid(row=10, column=0, sticky='NSEW')
     
     mainBooking.mainloop()
-mainBooking()
 
 
+Login()
 
